@@ -1,555 +1,856 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sumaiya Binte Shahid | Portfolio</title>
-  <!-- Google Fonts & Font Awesome Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <style>
-    :root {
-      --primary: #4F46E5;
-      --primary-light: #EEF2FF;
-      --secondary: #0EA5E9;
-      --dark: #0F172A;
-      --slate: #475569;
-      --light-slate: #94A3B8;
-      --bg: #F8FAFC;
-      --card-bg: #FFFFFF;
-      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-      --radius: 16px;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumaiya Binte Shahid | Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2b5876;
+            --primary-gradient: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+            --accent: #ff7e5f;
+            --accent-gradient: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+            --radius: 16px;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg);
-      color: var(--dark);
-      line-height: 1.6;
-      display: flex;
-    }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    /* Sidebar / Navigation */
-    aside {
-      width: 320px;
-      height: 100vh;
-      position: fixed;
-      left: 0;
-      top: 0;
-      background: var(--card-bg);
-      border-right: 1px solid #E2E8F0;
-      padding: 2.5rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 100;
-    }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
 
-    .profile-card {
-      text-align: center;
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    .avatar-wrapper {
-      position: relative;
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 1.5rem;
-      border-radius: 50%;
-      padding: 5px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-    }
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
 
-    .avatar-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      background: #fff;
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
 
-    .profile-card h1 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--dark);
-    }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
 
-    .profile-card p {
-      font-size: 0.875rem;
-      color: var(--primary);
-      font-weight: 600;
-      margin-top: 0.25rem;
-    }
+        .logo span {
+            color: var(--accent);
+        }
 
-    .nav-menu {
-      list-style: none;
-      margin: 2rem 0;
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-    .nav-menu li {
-      margin-bottom: 0.5rem;
-    }
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
 
-    .nav-menu a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0.75rem 1rem;
-      color: var(--slate);
-      text-decoration: none;
-      font-weight: 500;
-      border-radius: 10px;
-      transition: var(--transition);
-    }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
 
-    .nav-menu a:hover, .nav-menu a.active {
-      background: var(--primary-light);
-      color: var(--primary);
-    }
+        /* --- Hero Section --- */
+        .hero {
+            padding: 9rem 2rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
 
-    .sidebar-footer {
-      font-size: 0.8rem;
-      color: var(--light-slate);
-      text-align: center;
-    }
+        .hero-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
 
-    /* Main Content */
-    main {
-      margin-left: 320px;
-      flex: 1;
-      padding: 3rem 4rem;
-      max-width: 1100px;
-    }
+        .hero-img-container {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            padding: 8px;
+            background: var(--primary-gradient);
+            box-shadow: 0 20px 40px rgba(43, 88, 118, 0.2);
+            position: relative;
+            z-index: 2;
+        }
 
-    section {
-      margin-bottom: 4rem;
-      scroll-margin-top: 3rem;
-    }
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #fff;
+            border: 4px solid #fff;
+        }
 
-    .section-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+        .badge-floating {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: var(--card-bg);
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border: 1px solid var(--border);
+            z-index: 3;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
 
-    .section-title i {
-      color: var(--primary);
-      background: var(--primary-light);
-      padding: 10px;
-      border-radius: 12px;
-      font-size: 1.2rem;
-    }
+        .badge-floating i {
+            color: #eab308;
+            font-size: 1.1rem;
+        }
 
-    /* Cards Layout */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
+        .hero-content h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
 
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-      box-shadow: var(--shadow);
-      border: 1px solid #F1F5F9;
-      transition: var(--transition);
-    }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
-    }
+        .hero-description {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+            max-width: 540px;
+        }
 
-    /* Hero Banner */
-    .hero {
-      background: linear-gradient(135deg, var(--primary), #3B82F6);
-      color: white;
-      padding: 3rem;
-      border-radius: var(--radius);
-      margin-bottom: 3rem;
-    }
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
 
-    .hero h2 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-    }
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+        }
 
-    .hero p {
-      font-size: 1.05rem;
-      opacity: 0.9;
-      max-width: 650px;
-      margin-bottom: 1.5rem;
-    }
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(43, 88, 118, 0.3);
+        }
 
-    .contact-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(43, 88, 118, 0.4);
+        }
 
-    .pill {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-    }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
 
-    /* Timeline / Education & Experience */
-    .timeline {
-      position: relative;
-      padding-left: 2rem;
-      border-left: 2px solid #E2E8F0;
-    }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
 
-    .timeline-item {
-      position: relative;
-      margin-bottom: 2rem;
-    }
+        /* --- Stats Highlights --- */
+        .stats-bar {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
 
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: calc(-2rem - 6px);
-      top: 5px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--primary);
-      border: 2px solid white;
-    }
+        .stat-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
 
-    .timeline-item h4 {
-      font-size: 1.1rem;
-      color: var(--dark);
-    }
+        .stat-card h3 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
 
-    .timeline-item .sub {
-      color: var(--primary);
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
+        .stat-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
 
-    .timeline-item .meta {
-      font-size: 0.85rem;
-      color: var(--light-slate);
-      margin-bottom: 0.75rem;
-    }
+        /* --- General Layout --- */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .badge-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
 
-    .badge {
-      background: var(--primary-light);
-      color: var(--primary);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
 
-    /* Skills & Tags */
-    .skills-flex {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
+        .section-header .line {
+            width: 60px;
+            height: 4px;
+            background: var(--accent-gradient);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
 
-    .skill-tag {
-      background: var(--card-bg);
-      border: 1px solid #E2E8F0;
-      padding: 0.6rem 1.2rem;
-      border-radius: 12px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-    }
+        /* --- Education & Experience (Timeline style) --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
 
-    .skill-tag i {
-      color: var(--primary);
-    }
+        .timeline-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
 
-    /* Key Value Grid */
-    .info-list {
-      list-style: none;
-    }
+        .timeline-card:hover {
+            transform: translateY(-3px);
+        }
 
-    .info-list li {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.6rem 0;
-      border-bottom: 1px dashed #E2E8F0;
-      font-size: 0.9rem;
-    }
+        .timeline-tag {
+            display: inline-block;
+            background: rgba(43, 88, 118, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
 
-    .info-list li span:first-child {
-      color: var(--slate);
-    }
+        .timeline-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-main);
+        }
 
-    .info-list li span:last-child {
-      font-weight: 600;
-    }
+        .timeline-card h4 {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
 
-    /* Responsive */
-    @media (max-width: 992px) {
-      body {
-        flex-direction: column;
-      }
+        .timeline-card ul {
+            list-style: none;
+        }
 
-      aside {
-        width: 100%;
-        height: auto;
-        position: relative;
-        padding: 2rem;
-      }
+        .timeline-card ul li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
 
-      main {
-        margin-left: 0;
-        padding: 2rem 1.5rem;
-      }
+        .timeline-card ul li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
 
-      .hero {
-        padding: 2rem;
-      }
-    }
-  </style>
+        /* --- Research Interests Grid --- */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .research-card {
+            background: var(--card-bg);
+            padding: 1.8rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .research-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .research-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(255, 126, 95, 0.1);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .research-card h3 {
+            font-size: 1.05rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        /* --- Skills & Extracurriculars --- */
+        .skills-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-box {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .skill-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--primary);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .tag {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .activity-item {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .activity-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .activity-item h4 {
+            font-size: 1rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+
+        .activity-item p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* --- References & Contact --- */
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .ref-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .ref-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .ref-card .title {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .ref-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .contact-box {
+            background: var(--primary-gradient);
+            color: #fff;
+            padding: 3.5rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(43, 88, 118, 0.25);
+        }
+
+        .contact-box h2 {
+            color: #fff;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-box p {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-pill {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 7rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+
+            .hero-description {
+                margin: 0 auto 2rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none; /* Can be expanded into mobile drawer */
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Sidebar Navigation -->
-  <aside>
-    <div class="profile-card">
-      <div class="avatar-wrapper">
-        <!-- Photo Placeholder pointing to sumaiya.jpg -->
-        <img src="sumaiya.jpg" alt="Sumaiya Binte Shahid" onerror="this.src='https://via.placeholder.com/150?text=Sumaiya'">
-      </div>
-      <h1>Sumaiya Binte Shahid[span_0](start_span)[span_0](end_span)</h1>
-      <p>MEd Student & Researcher[span_1](start_span)[span_1](end_span)</p>
-    </div>
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Sumaiya<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
 
-    <ul class="nav-menu">
-      <li><a href="#about" class="active"><i class="fa-solid fa-user"></i> About</a></li>
-      <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
-      <li><a href="#experience"><i class="fa-solid fa-chalkboard-user"></i> Experience</a></li>
-      <li><a href="#research"><i class="fa-solid fa-microscope"></i> Research Interest</a></li>
-      <li><a href="#activities"><i class="fa-solid fa-trophy"></i> Awards & Activities</a></li>
-      <li><a href="#skills"><i class="fa-solid fa-laptop-code"></i> Skills</a></li>
-    </ul>
-
-    <div class="sidebar-footer">
-      <p>© 2026 Sumaiya B. Shahid</p>
-    </div>
-  </aside>
-
-  <!-- Main Content Area -->
-  <main>
-    
-    <!-- Hero Banner -->
+    <!-- Hero Section -->
     <section class="hero" id="about">
-      <h2>Hello, I'm Sumaiya 👋</h2>
-      <p>
-        An enthusiastic educator, researcher, and MEd student at the University of Dhaka[span_2](start_span)[span_2](end_span). 
-        Passionate about Curriculum & Instruction, STEM Education, Pedagogy, and innovative teaching methods[span_3](start_span)[span_3](end_span).
-      </p>
-      <div class="contact-pills">
-        <a href="mailto:sumaiyabinte-27-2020517283@ier.du.ac.bd" class="pill"><i class="fa-solid fa-envelope"></i> sumaiyabinte-27-2020517283@ier.du.ac.bd[span_4](start_span)[span_4](end_span)</a>
-        <a href="tel:+8801632751606" class="pill"><i class="fa-solid fa-phone"></i> +8801632751606[span_5](start_span)[span_5](end_span)</a>
-        <span class="pill"><i class="fa-solid fa-location-dot"></i> Ruqqayyah Hall, DU[span_6](start_span)[span_6](end_span)</span>
-      </div>
+        <div class="hero-image-wrapper">
+            <div class="hero-img-container">
+                <!-- Using photo provided as sumaiya.jpg -->
+                <img src="sumaiya.jpg" alt="Sumaiya Binte Shahid" class="hero-img" onerror="this.src='https://via.placeholder.com/300?text=Sumaiya+Photo'">
+            </div>
+            <div class="badge-floating">
+                <i class="fa-solid fa-award"></i>
+                <span>Academic Excellence</span>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h1>Sumaiya Binte Shahid</h1>
+            <span class="hero-subtitle">MEd Student | Educator | Researcher</span>
+            <p class="hero-description">
+                Dedicated Biological Science (Education) graduate from the University of Dhaka. Passionate about modern pedagogy, curriculum design, and empowering students through science education.
+            </p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary"><i class="fa-regular fa-envelope"></i> Get In Touch</a>
+                <a href="#education" class="btn btn-outline"><i class="fa-solid fa-graduation-cap"></i> Academic Profile</a>
+            </div>
+        </div>
     </section>
 
-    <!-- Education Section -->
+    <!-- Stats Highlights -->
+    <div class="stats-bar">
+        <div class="stat-card">
+            <h3>4.00</h3>
+            <p>GPA in 7th Semester (B.Ed)</p>
+        </div>
+        <div class="stat-card">
+            <h3>5.00</h3>
+            <p>HSC & SSC GPA (Science)</p>
+        </div>
+        <div class="stat-card">
+            <h3>100k BDT</h3>
+            <p>Academic Excellence Award</p>
+        </div>
+        <div class="stat-card">
+            <h3>Top</h3>
+            <p>Placement in Teaching Internship</p>
+        </div>
+    </div>
+
+    <!-- Education & Experience Grid -->
     <section id="education">
-      <h3 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Academic Background</h3>
-      <div class="timeline">
-        
-        <div class="timeline-item">
-          <h4>Bachelor of Education (Honours)[span_7](start_span)[span_7](end_span)</h4>
-          <div class="sub">University of Dhaka, Bangladesh[span_8](start_span)[span_8](end_span)</div>
-          <div class="meta">Stream: Biological Science (Education) | Passing Year: 2025[span_9](start_span)[span_9](end_span)</div>
-          <div class="badge-list">
-            <span class="badge">7th Sem: 4.00 / 4.00[span_10](start_span)[span_10](end_span)</span>
-            <span class="badge">3rd Year: 3.73 / 4.00[span_11](start_span)[span_11](end_span)</span>
-            <span class="badge">2nd Year: 3.72 / 4.00[span_12](start_span)[span_12](end_span)</span>
-            <span class="badge">1st Year: 3.44 / 4.00[span_13](start_span)[span_13](end_span)</span>
-          </div>
+        <div class="section-header">
+            <h2>Education & Experience</h2>
+            <div class="line"></div>
         </div>
 
-        <div class="timeline-item">
-          <h4>Higher Secondary Certificate (HSC)[span_14](start_span)[span_14](end_span)</h4>
-          <div class="sub">Bangladesh Nou Bahini School and College, Chattagram[span_15](start_span)[span_15](end_span)</div>
-          <div class="meta">Group: Science | Passing Year: 2020[span_16](start_span)[span_16](end_span)</div>
-          <div class="badge-list">
-            <span class="badge">GPA: 5.00 / 5.00[span_17](start_span)[span_17](end_span)</span>
-          </div>
-        </div>
+        <div class="grid-2">
+            <!-- Left Column: Education -->
+            <div>
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary); font-size: 1.5rem;"><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+                
+                <div class="timeline-card">
+                    <span class="timeline-tag">Passing Year: 2025</span>
+                    <h3>Bachelor of Education (Honours)</h3>
+                    <h4>University of Dhaka | Stream: Biological Science</h4>
+                    <ul>
+                        <li><strong>7th Semester:</strong> GPA 4.00 / 4.00</li>
+                        <li><strong>3rd Year:</strong> GPA 3.73 / 4.00</li>
+                        <li><strong>2nd Year:</strong> GPA 3.72 / 4.00</li>
+                        <li><strong>1st Year:</strong> GPA 3.44 / 4.00</li>
+                    </ul>
+                </div>
 
-        <div class="timeline-item">
-          <h4>Secondary School Certificate (SSC)[span_18](start_span)[span_18](end_span)</h4>
-          <div class="sub">Bangladesh Nou Bahini School and College, Chattagram[span_19](start_span)[span_19](end_span)</div>
-          <div class="meta">Group: Science | Passing Year: 2018[span_20](start_span)[span_20](end_span)</div>
-          <div class="badge-list">
-            <span class="badge">GPA: 5.00 / 5.00[span_21](start_span)[span_21](end_span)</span>
-          </div>
-        </div>
+                <div class="timeline-card">
+                    <span class="timeline-tag">2020</span>
+                    <h3>Higher Secondary Certificate (HSC)</h3>
+                    <h4>Bangladesh Nou Bahini School & College, Chattagram</h4>
+                    <ul>
+                        <li><strong>Group:</strong> Science</li>
+                        <li><strong>Result:</strong> GPA 5.00 / 5.00</li>
+                    </ul>
+                </div>
 
-      </div>
+                <div class="timeline-card">
+                    <span class="timeline-tag">2018</span>
+                    <h3>Secondary School Certificate (SSC)</h3>
+                    <h4>Bangladesh Nou Bahini School & College, Chattagram</h4>
+                    <ul>
+                        <li><strong>Group:</strong> Science</li>
+                        <li><strong>Result:</strong> GPA 5.00 / 5.00</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Column: Experience -->
+            <div id="experience">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary); font-size: 1.5rem;"><i class="fa-solid fa-briefcase"></i> Experience</h3>
+                
+                <div class="timeline-card">
+                    <span class="timeline-tag">2025 (3 Months)</span>
+                    <h3>Teaching Intern</h3>
+                    <h4>Agrani Girls School & College, Dhaka</h4>
+                    <ul>
+                        <li>Completed an intensive 3-month teaching practicum.</li>
+                        <li>Recognized and placed as the <strong>Best Teacher</strong> multiple times during the internship.</li>
+                        <li>Contributed as Budget & Finance Manager during internship events.</li>
+                        <li>Organized successful cultural ceremonies during the practicum period.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <span class="timeline-tag">Ongoing</span>
+                    <h3>Teaching Assistant / Private Tutor</h3>
+                    <h4>Secondary & Higher Secondary Level</h4>
+                    <ul>
+                        <li>Specialized in teaching Physics, Mathematics, Biology, Chemistry, English, and Bangla.</li>
+                        <li>Delivered customized pedagogy focusing on science conceptual clarity and exam prep.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Teaching & Leadership Experience -->
-    <section id="experience">
-      <h3 class="section-title"><i class="fa-solid fa-chalkboard-user"></i> Experience & Leadership</h3>
-      <div class="grid">
-        
-        <div class="card">
-          <h4><i class="fa-solid fa-school text-primary"></i> Teaching Internship (2025)[span_22](start_span)[span_22](end_span)</h4>
-          <p style="color: var(--slate); font-size: 0.9rem; margin-top: 0.5rem;">
-            Completed a 3-month internship at <strong>Agrani Girls School and College</strong>[span_23](start_span)[span_23](end_span). Recognized as the <strong>Best Teacher</strong> several times[span_24](start_span)[span_24](end_span). Also acted as Budget and Finance Manager and arranged cultural ceremonies[span_25](start_span)[span_25](end_span).
-          </p>
+    <!-- Research Interests -->
+    <section id="research" style="background-color: rgba(255,255,255,0.6); border-radius: var(--radius);">
+        <div class="section-header">
+            <h2>Research Interests</h2>
+            <div class="line"></div>
         </div>
 
-        <div class="card">
-          <h4><i class="fa-solid fa-person-chalkboard"></i> Teaching Assistant[span_26](start_span)[span_26](end_span)</h4>
-          <p style="color: var(--slate); font-size: 0.9rem; margin-top: 0.5rem;">
-            Extensive teaching experience for Secondary and Higher Secondary levels[span_27](start_span)[span_27](end_span). Specialized in Physics, Mathematics, Biology, Chemistry, Bangla, and English[span_28](start_span)[span_28](end_span).
-          </p>
+        <div class="research-grid">
+            <div class="research-card">
+                <div class="research-icon"><i class="fa-solid fa-book-open"></i></div>
+                <h3>Curriculum & Instruction</h3>
+            </div>
+            <div class="research-card">
+                <div class="research-icon"><i class="fa-solid fa-brain"></i></div>
+                <h3>Students Psychology</h3>
+            </div>
+            <div class="research-card">
+                <div class="research-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <h3>Pedagogy & Teaching Methods</h3>
+            </div>
+            <div class="research-card">
+                <div class="research-icon"><i class="fa-solid fa-user-gear"></i></div>
+                <h3>Heutagogy (Self-Determined Learning)</h3>
+            </div>
+            <div class="research-card">
+                <div class="research-icon"><i class="fa-solid fa-child-reaching"></i></div>
+                <h3>Early Childhood Education</h3>
+            </div>
         </div>
-
-        <div class="card">
-          <h4><i class="fa-solid fa-hand-holding-heart"></i> Volunteer & Social Work[span_29](start_span)[span_29](end_span)</h4>
-          <p style="color: var(--slate); font-size: 0.9rem; margin-top: 0.5rem;">
-            Active committee member of <strong>Badhon</strong> (Blood Donation)[span_30](start_span)[span_30](end_span). Volunteered in Rover Scouts[span_31](start_span)[span_31](end_span) & led flood relief efforts in Feni (securing food, medical kits, and relief)[span_32](start_span)[span_32](end_span).
-          </p>
-        </div>
-
-      </div>
     </section>
 
-    <!-- Research Interest -->
-    <section id="research">
-      <h3 class="section-title"><i class="fa-solid fa-microscope"></i> Research Interests</h3>
-      <div class="skills-flex">
-        <div class="skill-tag"><i class="fa-solid fa-book-open"></i> Curriculum & Instruction[span_33](start_span)[span_33](end_span)</div>
-        <div class="skill-tag"><i class="fa-solid fa-brain"></i> Students Psychology[span_34](start_span)[span_34](end_span)</div>
-        <div class="skill-tag"><i class="fa-solid fa-lightbulb"></i> Pedagogy & Heutagogy[span_35](start_span)[span_35](end_span)</div>
-        <div class="skill-tag"><i class="fa-solid fa-child"></i> Early Childhood Education[span_36](start_span)[span_36](end_span)</div>
-        <div class="skill-tag"><i class="fa-solid fa-shapes"></i> Teaching Methods[span_37](start_span)[span_37](end_span)</div>
-      </div>
-    </section>
-
-    <!-- Awards & Extracurricular Activities -->
-    <section id="activities">
-      <h3 class="section-title"><i class="fa-solid fa-trophy"></i> Awards & Achievements</h3>
-      <div class="grid">
-        <div class="card">
-          <ul class="info-list">
-            <li>
-              <span>HSC Academic Excellence Award[span_38](start_span)[span_38](end_span)</span>
-              <span>100,000 BDT Prize[span_39](start_span)[span_39](end_span)</span>
-            </li>
-            <li>
-              <span>IFIC Bank Essay Competition[span_40](start_span)[span_40](end_span)</span>
-              <span>Nationwide Winner[span_41](start_span)[span_41](end_span)</span>
-            </li>
-            <li>
-              <span>National Eco Olympiad (2025)[span_42](start_span)[span_42](end_span)</span>
-              <span>National Round Finalist[span_43](start_span)[span_43](end_span)</span>
-            </li>
-            <li>
-              <span>International STEM Conference (2025)[span_44](start_span)[span_44](end_span)</span>
-              <span>Appreciation Certificate[span_45](start_span)[span_45](end_span)</span>
-            </li>
-            <li>
-              <span>ICT Olympiad Season 2[span_46](start_span)[span_46](end_span)</span>
-              <span>Participant[span_47](start_span)[span_47](end_span)</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills, Languages & Certifications -->
+    <!-- Skills, Training & Extracurriculars -->
     <section id="skills">
-      <h3 class="section-title"><i class="fa-solid fa-laptop-code"></i> Technical & Professional Skills</h3>
-      
-      <div class="grid">
-        <div class="card">
-          <h4 style="margin-bottom: 1rem;">Software & Tools[span_48](start_span)[span_48](end_span)</h4>
-          <div class="skills-flex">
-            <span class="skill-tag"><i class="fa-solid fa-file-word"></i> MS Word[span_49](start_span)[span_49](end_span)</span>
-            <span class="skill-tag"><i class="fa-solid fa-file-excel"></i> MS Excel[span_50](start_span)[span_50](end_span)</span>
-            <span class="skill-tag"><i class="fa-solid fa-file-powerpoint"></i> Power Point[span_51](start_span)[span_51](end_span)</span>
-            <span class="skill-tag"><i class="fa-solid fa-chart-pie"></i> SPSS[span_52](start_span)[span_52](end_span)</span>
-          </div>
+        <div class="section-header">
+            <h2>Skills & Achievements</h2>
+            <div class="line"></div>
         </div>
 
-        <div class="card">
-          <h4 style="margin-bottom: 1rem;">Trainings & Courses[span_53](start_span)[span_53](end_span)</h4>
-          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--slate);">
-            <li><strong>Code.org:</strong> Express Course 2024[span_54](start_span)[span_54](end_span)</li>
-            <li><strong>DisasterReady:</strong> Excel 365 Beginner[span_55](start_span)[span_55](end_span)</li>
-            <li><strong>Ministry of ICT:</strong> Digital Literacy Course[span_56](start_span)[span_56](end_span)</li>
-            <li><strong>Webinar Training:</strong> Refining Lesson Plans[span_57](start_span)[span_57](end_span)</li>
-          </ul>
-        </div>
+        <div class="skills-wrapper">
+            <!-- Technical Skills -->
+            <div class="skill-box">
+                <h3><i class="fa-solid fa-laptop-code"></i> Skills & Software</h3>
+                <div class="skill-tags">
+                    <span class="tag"><i class="fa-solid fa-file-word"></i> MS Word</span>
+                    <span class="tag"><i class="fa-solid fa-file-excel"></i> MS Excel</span>
+                    <span class="tag"><i class="fa-solid fa-file-powerpoint"></i> Power Point</span>
+                    <span class="tag"><i class="fa-solid fa-chart-bar"></i> SPSS Data Analysis</span>
+                    <span class="tag"><i class="fa-solid fa-globe"></i> Internet & Mailing</span>
+                    <span class="tag"><i class="fa-solid fa-comments"></i> English & Bengali Fluency</span>
+                </div>
 
-        <div class="card">
-          <h4 style="margin-bottom: 1rem;">Languages[span_58](start_span)[span_58](end_span)</h4>
-          <ul class="info-list">
-            <li><span>Bengali[span_59](start_span)[span_59](end_span)</span> <span>Native / Mother Tongue[span_60](start_span)[span_60](end_span)</span></li>
-            <li><span>English[span_61](start_span)[span_61](end_span)</span> <span>Proficient (Speaking, Writing, Reading)[span_62](start_span)[span_62](end_span)</span></li>
-          </ul>
+                <h3 style="margin-top: 2rem;"><i class="fa-solid fa-certificate"></i> Certifications</h3>
+                <div style="font-size: 0.9rem; color: var(--text-muted);">
+                    <p style="margin-bottom: 0.5rem;">• <strong>Express Course (2024):</strong> Computer Science Concepts (code.org)</p>
+                    <p style="margin-bottom: 0.5rem;">• <strong>Excel 365 Beginner:</strong> disasterready.org</p>
+                    <p style="margin-bottom: 0.5rem;">• <strong>Digital Literacy for Youth:</strong> Ministry of ICT, Bangladesh</p>
+                    <p style="margin-bottom: 0.5rem;">• <strong>Refining Lesson Plans:</strong> 2024 Webinar Series</p>
+                </div>
+            </div>
+
+            <!-- Activities & Awards -->
+            <div class="skill-box">
+                <h3><i class="fa-solid fa-trophy"></i> Awards & Activities</h3>
+                
+                <div class="activity-item">
+                    <h4>Outstanding Result HSC Award</h4>
+                    <p>Won 100,000 BDT for exceptional performance in HSC exams.</p>
+                </div>
+
+                <div class="activity-item">
+                    <h4>National Eco Olympiad (2025)</h4>
+                    <p>Award winner for outstanding performance; selected for the national round.</p>
+                </div>
+
+                <div class="activity-item">
+                    <h4>International Conference on STEM Education (2025)</h4>
+                    <p>Participated & awarded Certificate of Appreciation for Innovation & Integration.</p>
+                </div>
+
+                <div class="activity-item">
+                    <h4>Rover Scout & Social Work</h4>
+                    <p>Volunteered on International Mother Language Day (2024). Organized flood relief meals & medical kits in Feni, Bangladesh.</p>
+                </div>
+
+                <div class="activity-item">
+                    <h4>National Essay Competition</h4>
+                    <p>Won certificate from IFIC Bank, Dhaka, Bangladesh.</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Academic References -->
-    <section id="references">
-      <h3 class="section-title"><i class="fa-solid fa-bookmark"></i> References</h3>
-      <div class="grid">
-        <div class="card">
-          <h4>Dr. Rezina Ahmed[span_63](start_span)[span_63](end_span)</h4>
-          <p style="font-size: 0.85rem; color: var(--primary); font-weight: 600;">Associate Professor[span_64](start_span)[span_64](end_span)</p>
-          <p style="font-size: 0.85rem; color: var(--slate);">Institute of Education and Research, DU[span_65](start_span)[span_65](end_span)</p>
-          <p style="font-size: 0.85rem; margin-top: 0.5rem;"><i class="fa-solid fa-envelope"></i> rezinanur@gmail.com[span_66](start_span)[span_66](end_span)</p>
-          <p style="font-size: 0.85rem;"><i class="fa-solid fa-phone"></i> +88-01816757606[span_67](start_span)[span_67](end_span)</p>
+    <!-- References & Contact -->
+    <section id="contact">
+        <div class="section-header">
+            <h2>References</h2>
+            <div class="line"></div>
         </div>
 
-        <div class="card">
-          <h4>Dr. Saira Hossain[span_68](start_span)[span_68](end_span)</h4>
-          <p style="font-size: 0.85rem; color: var(--primary); font-weight: 600;">Associate Professor[span_69](start_span)[span_69](end_span)</p>
-          <p style="font-size: 0.85rem; color: var(--slate);">Institute of Education and Research, DU[span_70](start_span)[span_70](end_span)</p>
-          <p style="font-size: 0.85rem; margin-top: 0.5rem;"><i class="fa-solid fa-envelope"></i> saira.hossain@du.ac.bd[span_71](start_span)[span_71](end_span)</p>
-          <p style="font-size: 0.85rem;"><i class="fa-solid fa-phone"></i> +88-01817071192[span_72](start_span)[span_72](end_span)</p>
+        <div class="references-grid">
+            <div class="ref-card">
+                <h3>Dr. Rezina Ahmed</h3>
+                <div class="title">Associate Professor</div>
+                <p><i class="fa-solid fa-building-columns"></i> Institute of Education and Research, DU</p>
+                <p><i class="fa-solid fa-envelope"></i> rezinanur@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i> +88-01816757606</p>
+            </div>
+
+            <div class="ref-card">
+                <h3>Dr. Saira Hossain</h3>
+                <div class="title">Associate Professor</div>
+                <p><i class="fa-solid fa-building-columns"></i> Institute of Education and Research, DU</p>
+                <p><i class="fa-solid fa-envelope"></i> saira.hossain@du.ac.bd</p>
+                <p><i class="fa-solid fa-phone"></i> +88-01817071192</p>
+            </div>
         </div>
-      </div>
+
+        <!-- Direct Contact Banner -->
+        <div class="contact-box">
+            <h2>Let's Connect</h2>
+            <p>Feel free to reach out for research collaborations, teaching opportunities, or academic inquiries.</p>
+            
+            <div class="contact-details">
+                <a href="mailto:sumaiyabinte-27-2020517283@ier.du.ac.bd" class="contact-pill">
+                    <i class="fa-solid fa-envelope"></i> sumaiyabinte-27-2020517283@ier.du.ac.bd
+                </a>
+                <a href="tel:+8801632751606" class="contact-pill">
+                    <i class="fa-solid fa-phone"></i> +880 1632 751606
+                </a>
+                <div class="contact-pill">
+                    <i class="fa-solid fa-location-dot"></i> 916, Ruqqayyah Hall, University of Dhaka
+                </div>
+            </div>
+        </div>
     </section>
 
-  </main>
+    <footer>
+        <p>&copy; 2026 Sumaiya Binte Shahid. All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>
