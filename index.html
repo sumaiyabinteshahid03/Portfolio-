@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sumaiya Binte Shahid | Portfolio</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #4F46E5;
+      --primary-light: #EEF2FF;
+      --secondary: #0EA5E9;
+      --dark: #0F172A;
+      --slate: #475569;
+      --light-slate: #94A3B8;
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      --radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+      display: flex;
+    }
+
+    /* Sidebar / Navigation */
+    aside {
+      width: 320px;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background: var(--card-bg);
+      border-right: 1px solid #E2E8F0;
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 100;
+    }
+
+    .profile-card {
+      text-align: center;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      padding: 5px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .profile-card h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .profile-card p {
+      font-size: 0.875rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+
+    .nav-menu {
+      list-style: none;
+      margin: 2rem 0;
+    }
+
+    .nav-menu li {
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.75rem 1rem;
+      color: var(--slate);
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 10px;
+      transition: var(--transition);
+    }
+
+    .nav-menu a:hover, .nav-menu a.active {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .sidebar-footer {
+      font-size: 0.8rem;
+      color: var(--light-slate);
+      text-align: center;
+    }
+
+    /* Main Content */
+    main {
+      margin-left: 320px;
+      flex: 1;
+      padding: 3rem 4rem;
+      max-width: 1100px;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      scroll-margin-top: 3rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 10px;
+      border-radius: 12px;
+      font-size: 1.2rem;
+    }
+
+    /* Cards Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      border: 1px solid #F1F5F9;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), #3B82F6);
+      color: white;
+      padding: 3rem;
+      border-radius: var(--radius);
+      margin-bottom: 3rem;
+    }
+
+    .hero h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      max-width: 650px;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    /* Timeline / Education & Experience */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      border-left: 2px solid #E2E8F0;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: calc(-2rem - 6px);
+      top: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid white;
+    }
+
+    .timeline-item h4 {
+      font-size: 1.1rem;
+      color: var(--dark);
+    }
+
+    .timeline-item .sub {
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item .meta {
+      font-size: 0.85rem;
+      color: var(--light-slate);
+      margin-bottom: 0.75rem;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Skills & Tags */
+    .skills-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .skill-tag {
+      background: var(--card-bg);
+      border: 1px solid #E2E8F0;
+      padding: 0.6rem 1.2rem;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .skill-tag i {
+      color: var(--primary);
+    }
+
+    /* Key Value Grid */
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px dashed #E2E8F0;
+      font-size: 0.9rem;
+    }
+
+    .info-list li span:first-child {
+      color: var(--slate);
+    }
+
+    .info-list li span:last-child {
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      body {
+        flex-direction: column;
+      }
+
+      aside {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 2rem;
+      }
+
+      main {
+        margin-left: 0;
+        padding: 2rem 1.5rem;
+      }
+
+      .hero {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <aside>
+    <div class="profile-card">
+      <div class="avatar-wrapper">
+        <!-- Photo Placeholder pointing to sumaiya.jpg -->
+        <img src="sumaiya.jpg" alt="Sumaiya Binte Shahid" onerror="this.src='https://via.placeholder.com/150?text=Sumaiya'">
+      </div>
+      <h1>Sumaiya Binte Shahid[span_0](start_span)[span_0](end_span)</h1>
+      <p>MEd Student & Researcher[span_1](start_span)[span_1](end_span)</p>
+    </div>
+
+    <ul class="nav-menu">
+      <li><a href="#about" class="active"><i class="fa-solid fa-user"></i> About</a></li>
+      <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
+      <li><a href="#experience"><i class="fa-solid fa-chalkboard-user"></i> Experience</a></li>
+      <li><a href="#research"><i class="fa-solid fa-microscope"></i> Research Interest</a></li>
+      <li><a href="#activities"><i class="fa-solid fa-trophy"></i> Awards & Activities</a></li>
+      <li><a href="#skills"><i class="fa-solid fa-laptop-code"></i> Skills</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <p>© 2026 Sumaiya B. Shahid</p>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main>
+    
+    <!-- Hero Banner -->
+    <section class="hero" id="about">
+      <h2>Hello, I'm Sumaiya 👋</h2>
+      <p>
+        An enthusiastic educator, researcher, and MEd student at the University of Dhaka[span_2](start_span)[span_2](end_span). 
+        Passionate about Curriculum & Instruction, STEM Education, Pedagogy, and innovative teaching methods[span_3](start_span)[span_3](end_span).
+      </p>
+      <div class="contact-pills">
+        <a href="mailto:sumaiyabinte-27-2020517283@ier.du.ac.bd" class="pill"><i class="fa-solid fa-envelope"></i> sumaiyabinte-27-2020517283@ier.du.ac.bd[span_4](start_span)[span_4](end_span)</a>
+        <a href="tel:+8801632751606" class="pill"><i class="fa-solid fa-phone"></i> +8801632751606[span_5](start_span)[span_5](end_span)</a>
+        <span class="pill"><i class="fa-solid fa-location-dot"></i> Ruqqayyah Hall, DU[span_6](start_span)[span_6](end_span)</span>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+      <h3 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Academic Background</h3>
+      <div class="timeline">
+        
+        <div class="timeline-item">
+          <h4>Bachelor of Education (Honours)[span_7](start_span)[span_7](end_span)</h4>
+          <div class="sub">University of Dhaka, Bangladesh[span_8](start_span)[span_8](end_span)</div>
+          <div class="meta">Stream: Biological Science (Education) | Passing Year: 2025[span_9](start_span)[span_9](end_span)</div>
+          <div class="badge-list">
+            <span class="badge">7th Sem: 4.00 / 4.00[span_10](start_span)[span_10](end_span)</span>
+            <span class="badge">3rd Year: 3.73 / 4.00[span_11](start_span)[span_11](end_span)</span>
+            <span class="badge">2nd Year: 3.72 / 4.00[span_12](start_span)[span_12](end_span)</span>
+            <span class="badge">1st Year: 3.44 / 4.00[span_13](start_span)[span_13](end_span)</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <h4>Higher Secondary Certificate (HSC)[span_14](start_span)[span_14](end_span)</h4>
+          <div class="sub">Bangladesh Nou Bahini School and College, Chattagram[span_15](start_span)[span_15](end_span)</div>
+          <div class="meta">Group: Science | Passing Year: 2020[span_16](start_span)[span_16](end_span)</div>
+          <div class="badge-list">
+            <span class="badge">GPA: 5.00 / 5.00[span_17](start_span)[span_17](end_span)</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <h4>Secondary School Certificate (SSC)[span_18](start_span)[span_18](end_span)</h4>
+          <div class="sub">Bangladesh Nou Bahini School and College, Chattagram[span_19](start_span)[span_19](end_span)</div>
+          <div class="meta">Group: Science | Passing Year: 2018[span_20](start_span)[span_20](end_span)</div>
+          <div class="badge-list">
+            <span class="badge">GPA: 5.00 / 5.00[span_21](start_span)[span_21](end_span)</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Teaching & Leadership Experience -->
+    <section id="experience">
+      <h3 class="section-title"><i class="fa-solid fa-chalkboard-user"></i> Experience & Leadership</h3>
+      <div class="grid">
+        
+        <div class="card">
+          <h4><i class="fa-solid fa-school text-primary"></i> Teaching Internship (2025)[span_22](start_span)[span_22](end_span)</h4>
+          <p style="color: var(--slate); font-size: 0.9rem; margin-top: 0.5rem;">
+            Completed a 3-month internship at <strong>Agrani Girls School and College</strong>[span_23](start_span)[span_23](end_span). Recognized as the <strong>Best Teacher</strong> several times[span_24](start_span)[span_24](end_span). Also acted as Budget and Finance Manager and arranged cultural ceremonies[span_25](start_span)[span_25](end_span).
+          </p>
+        </div>
+
+        <div class="card">
+          <h4><i class="fa-solid fa-person-chalkboard"></i> Teaching Assistant[span_26](start_span)[span_26](end_span)</h4>
+          <p style="color: var(--slate); font-size: 0.9rem; margin-top: 0.5rem;">
+            Extensive teaching experience for Secondary and Higher Secondary levels[span_27](start_span)[span_27](end_span). Specialized in Physics, Mathematics, Biology, Chemistry, Bangla, and English[span_28](start_span)[span_28](end_span).
+          </p>
+        </div>
+
+        <div class="card">
+          <h4><i class="fa-solid fa-hand-holding-heart"></i> Volunteer & Social Work[span_29](start_span)[span_29](end_span)</h4>
+          <p style="color: var(--slate); font-size: 0.9rem; margin-top: 0.5rem;">
+            Active committee member of <strong>Badhon</strong> (Blood Donation)[span_30](start_span)[span_30](end_span). Volunteered in Rover Scouts[span_31](start_span)[span_31](end_span) & led flood relief efforts in Feni (securing food, medical kits, and relief)[span_32](start_span)[span_32](end_span).
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Research Interest -->
+    <section id="research">
+      <h3 class="section-title"><i class="fa-solid fa-microscope"></i> Research Interests</h3>
+      <div class="skills-flex">
+        <div class="skill-tag"><i class="fa-solid fa-book-open"></i> Curriculum & Instruction[span_33](start_span)[span_33](end_span)</div>
+        <div class="skill-tag"><i class="fa-solid fa-brain"></i> Students Psychology[span_34](start_span)[span_34](end_span)</div>
+        <div class="skill-tag"><i class="fa-solid fa-lightbulb"></i> Pedagogy & Heutagogy[span_35](start_span)[span_35](end_span)</div>
+        <div class="skill-tag"><i class="fa-solid fa-child"></i> Early Childhood Education[span_36](start_span)[span_36](end_span)</div>
+        <div class="skill-tag"><i class="fa-solid fa-shapes"></i> Teaching Methods[span_37](start_span)[span_37](end_span)</div>
+      </div>
+    </section>
+
+    <!-- Awards & Extracurricular Activities -->
+    <section id="activities">
+      <h3 class="section-title"><i class="fa-solid fa-trophy"></i> Awards & Achievements</h3>
+      <div class="grid">
+        <div class="card">
+          <ul class="info-list">
+            <li>
+              <span>HSC Academic Excellence Award[span_38](start_span)[span_38](end_span)</span>
+              <span>100,000 BDT Prize[span_39](start_span)[span_39](end_span)</span>
+            </li>
+            <li>
+              <span>IFIC Bank Essay Competition[span_40](start_span)[span_40](end_span)</span>
+              <span>Nationwide Winner[span_41](start_span)[span_41](end_span)</span>
+            </li>
+            <li>
+              <span>National Eco Olympiad (2025)[span_42](start_span)[span_42](end_span)</span>
+              <span>National Round Finalist[span_43](start_span)[span_43](end_span)</span>
+            </li>
+            <li>
+              <span>International STEM Conference (2025)[span_44](start_span)[span_44](end_span)</span>
+              <span>Appreciation Certificate[span_45](start_span)[span_45](end_span)</span>
+            </li>
+            <li>
+              <span>ICT Olympiad Season 2[span_46](start_span)[span_46](end_span)</span>
+              <span>Participant[span_47](start_span)[span_47](end_span)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills, Languages & Certifications -->
+    <section id="skills">
+      <h3 class="section-title"><i class="fa-solid fa-laptop-code"></i> Technical & Professional Skills</h3>
+      
+      <div class="grid">
+        <div class="card">
+          <h4 style="margin-bottom: 1rem;">Software & Tools[span_48](start_span)[span_48](end_span)</h4>
+          <div class="skills-flex">
+            <span class="skill-tag"><i class="fa-solid fa-file-word"></i> MS Word[span_49](start_span)[span_49](end_span)</span>
+            <span class="skill-tag"><i class="fa-solid fa-file-excel"></i> MS Excel[span_50](start_span)[span_50](end_span)</span>
+            <span class="skill-tag"><i class="fa-solid fa-file-powerpoint"></i> Power Point[span_51](start_span)[span_51](end_span)</span>
+            <span class="skill-tag"><i class="fa-solid fa-chart-pie"></i> SPSS[span_52](start_span)[span_52](end_span)</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 style="margin-bottom: 1rem;">Trainings & Courses[span_53](start_span)[span_53](end_span)</h4>
+          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--slate);">
+            <li><strong>Code.org:</strong> Express Course 2024[span_54](start_span)[span_54](end_span)</li>
+            <li><strong>DisasterReady:</strong> Excel 365 Beginner[span_55](start_span)[span_55](end_span)</li>
+            <li><strong>Ministry of ICT:</strong> Digital Literacy Course[span_56](start_span)[span_56](end_span)</li>
+            <li><strong>Webinar Training:</strong> Refining Lesson Plans[span_57](start_span)[span_57](end_span)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h4 style="margin-bottom: 1rem;">Languages[span_58](start_span)[span_58](end_span)</h4>
+          <ul class="info-list">
+            <li><span>Bengali[span_59](start_span)[span_59](end_span)</span> <span>Native / Mother Tongue[span_60](start_span)[span_60](end_span)</span></li>
+            <li><span>English[span_61](start_span)[span_61](end_span)</span> <span>Proficient (Speaking, Writing, Reading)[span_62](start_span)[span_62](end_span)</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Academic References -->
+    <section id="references">
+      <h3 class="section-title"><i class="fa-solid fa-bookmark"></i> References</h3>
+      <div class="grid">
+        <div class="card">
+          <h4>Dr. Rezina Ahmed[span_63](start_span)[span_63](end_span)</h4>
+          <p style="font-size: 0.85rem; color: var(--primary); font-weight: 600;">Associate Professor[span_64](start_span)[span_64](end_span)</p>
+          <p style="font-size: 0.85rem; color: var(--slate);">Institute of Education and Research, DU[span_65](start_span)[span_65](end_span)</p>
+          <p style="font-size: 0.85rem; margin-top: 0.5rem;"><i class="fa-solid fa-envelope"></i> rezinanur@gmail.com[span_66](start_span)[span_66](end_span)</p>
+          <p style="font-size: 0.85rem;"><i class="fa-solid fa-phone"></i> +88-01816757606[span_67](start_span)[span_67](end_span)</p>
+        </div>
+
+        <div class="card">
+          <h4>Dr. Saira Hossain[span_68](start_span)[span_68](end_span)</h4>
+          <p style="font-size: 0.85rem; color: var(--primary); font-weight: 600;">Associate Professor[span_69](start_span)[span_69](end_span)</p>
+          <p style="font-size: 0.85rem; color: var(--slate);">Institute of Education and Research, DU[span_70](start_span)[span_70](end_span)</p>
+          <p style="font-size: 0.85rem; margin-top: 0.5rem;"><i class="fa-solid fa-envelope"></i> saira.hossain@du.ac.bd[span_71](start_span)[span_71](end_span)</p>
+          <p style="font-size: 0.85rem;"><i class="fa-solid fa-phone"></i> +88-01817071192[span_72](start_span)[span_72](end_span)</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
